@@ -119,7 +119,7 @@ EOF
 
 
 #输出
-cat <<EOF | sudo tee /etc/logstash/conf.d/02-beats-input.conf
+cat <<EOF | sudo tee /etc/logstash/conf.d/30-elasticsearch-output.conf
 output {
   elasticsearch {
     hosts => ["localhost:9200"]
