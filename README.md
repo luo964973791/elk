@@ -159,6 +159,9 @@ vi /etc/filebeat/filebeat.yml
 ```javascript
 systemctl start elasticsearch
 systemctl enable elasticsearch
+curl -XGET '127.0.0.1:9200/_cluster/health?pretty'    #查看状态是否为green.
+curl -XGET '127.0.0.1:9200/_cat/nodes?v'              #查看node.
+curl -XGET '127.0.0.1:9200/_cat/allocation?v&pretty'  #查看存储空间.
 systemctl start kibana
 systemctl enable kibana
 systemctl start logstash
