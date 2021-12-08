@@ -187,3 +187,24 @@ sudo filebeat setup -e -E output.logstash.enabled=false -E output.elasticsearch.
 http://127.0.0.1:5601/app/discover    #查看日志.
 ```
 
+
+#### 六、Loki日志收集.
+
+```javascript
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm upgrade --install loki grafana/loki-stack \
+  --namespace=loki-stack \
+  --create-namespace \
+  --set grafana.enabled=true \
+  --set loki.persistence.enabled=true \
+  --set loki.persistence.storageClassName=csi-cephfs-sc \
+  --set loki.persistence.size=5Gi
+  
+  
+  
+kubectl get secret --namespace loki-stack loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+kubectl -n loki-stack patch svc loki-grafana -p '{"spec": {"type": "NodePort"}}'
+```
+
+
