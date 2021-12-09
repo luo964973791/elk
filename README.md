@@ -213,6 +213,6 @@ kubectl -n loki-stack patch svc loki-grafana -p '{"spec": {"type": "NodePort"}}'
 git clone https://github.com/kubernetes/kubernetes.git
 cd kubernetes/cluster/addons/fluentd-elasticsearch
 kubectl apply -f .
-kubectl proxy --address='172.27.0.6' --port=8086 --accept-hosts='^*$'
-http://172.27.0.6:8086/api/v1/namespaces/logging/services/kibana-logging/proxy
+kubectl proxy --address='127.0.0.1' --port=8086 --accept-hosts='^*$'
+http://127.0.0.1:8086/api/v1/namespaces/logging/services/kibana-logging/proxy
 ```
