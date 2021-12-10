@@ -175,9 +175,9 @@ vi /etc/kibana/kibana.yml
 elasticsearch.username: "kibana_system"
 elasticsearch.password: "Test@12345"
 
-curl -XGET '127.0.0.1:9200/_cluster/health?pretty'    #查看状态是否为green.
-curl -XGET '127.0.0.1:9200/_cat/nodes?v'              #查看node.
-curl -XGET '127.0.0.1:9200/_cat/allocation?v&pretty'  #查看存储空间.
+curl -XGET　-u elastic:Test@12345 '127.0.0.1:9200/_cluster/health?pretty'    #查看状态是否为green.
+curl -XGET　-u elastic:Test@12345 '127.0.0.1:9200/_cat/nodes?v'              #查看node.
+curl -XGET　-u elastic:Test@12345 '127.0.0.1:9200/_cat/allocation?v&pretty'  #查看存储空间.
 systemctl start kibana
 systemctl enable kibana
 systemctl start logstash
