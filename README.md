@@ -3,16 +3,13 @@
 #### 一、环境检查
 
 ```javascript
-cat /etc/sysctl.conf
-vm.swappiness = 0
-vm.max_map_count = 655360
-
-
-vi /etc/security/limits.conf
-* soft nofile 65535
-* hard nofile 65535
-* soft nproc 65535
-* hard nproc 65535
+echo "vm.swappiness = 0" >>/etc/sysctl.conf
+echo "vm.max_map_count = 655360" >>/etc/sysctl.conf
+echo "net.core.somaxconn = 2048" >>/etc/sysctl.conf
+echo "*       soft    nofile  655360" >>/etc/security/limits.conf
+echo "*       hard    nofile  655360" >>/etc/security/limits.conf
+sed -i 's/#DefaultLimitNPROC=/DefaultLimitNPROC=655360/' /etc/systemd/system.conf
+sed -i 's/#DefaultLimitNPROC=/DefaultLimitNPROC=655360/' /etc/systemd/user.conf
 ```
 
 #### 二、安装jdk、es、kibana.
